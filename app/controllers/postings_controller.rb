@@ -8,7 +8,11 @@ class PostingsController < ApplicationController
   end
 
   def create
-    Posting.create(content: params[:posting][:content])
-    redirect_to new_posting_path
+    @posting = Posting.create(content: params[:posting][:content])
+    if @posting.save
+      redirect_to posting_path, notice: "投稿を作成しました！"
+    else
+      render :new
+    end
   end
 end
