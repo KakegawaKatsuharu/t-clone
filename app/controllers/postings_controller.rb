@@ -9,5 +9,6 @@ class PostingsController < ApplicationController
 
   def create
     Posting.create(content: params[:posting][:content])
+    redirect_to new_posting_path
   end
 end
