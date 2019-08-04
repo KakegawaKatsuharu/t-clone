@@ -10,7 +10,7 @@ class PostingsController < ApplicationController
   def create
     @posting = Posting.create(content: params[:posting][:content])
     if @posting.save
-      redirect_to posting_path, notice: "投稿を作成しました！"
+      redirect_to postings_path, notice: "投稿を作成しました！"
     else
       render :new
     end
