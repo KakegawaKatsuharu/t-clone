@@ -4,5 +4,10 @@ class PostingsController < ApplicationController
   end
 
   def new
+    @posting = Posting.new
+  end
+
+  def create
+    Posting.create(content: params[:posting][:content])
   end
 end
