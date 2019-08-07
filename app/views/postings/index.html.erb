@@ -2,12 +2,13 @@
 
 <table>
   <tr>
-    <th>内容</th>
+    <th>投稿内容</th>
   </tr>
 
 <% @postings.each do |posting| %>
   <tr>
     <td><%= posting.content %></td>
+    <td><%= link_to '詳細を確認する', posting_path(posting.id) %></td>
   </tr>
 <% end %>
 </table>
