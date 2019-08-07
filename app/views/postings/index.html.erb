@@ -9,8 +9,8 @@
   <tr>
     <td><%= posting.content %></td>
     <td><%= link_to '詳細を確認する', posting_path(posting.id) %></td>
-    <td><%= link_to '編集する', edit_posting_path(posting.id) %></td>
-    <td><%= link_to '削除する', posting_path(posting.id), method: :delete %></td>
+    <td><%= link_to '編集する', edit_posting_path(posting.id),data: {confirm: '本当に編集しますか？'} %></td>
+    <td><%= link_to '削除する', posting_path(posting.id), method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
   </tr>
 <% end %>
 </table>
