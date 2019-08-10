@@ -10,7 +10,7 @@ class PostingsController < ApplicationController
   end
 
   def create
-    @posting = Posting.create(content: params[:posting][:content])
+    @posting = Posting.create(posting_params)
     if @posting.save
       redirect_to postings_path, notice: "投稿を作成しました！"
     else
@@ -28,7 +28,7 @@ class PostingsController < ApplicationController
 
   def update
     set_posting
-      if @posting.update(content: params[:posting][:content])
+      if @posting.update(posting_params)
         redirect_to postings_path, notice: "投稿を編集しました！"
       else
         render :edit
@@ -40,8 +40,16 @@ class PostingsController < ApplicationController
     redirect_to postings_path, notice:"投稿を削除しました！"
   end
 
+  def confirm
+    @posting = Posting.new(posting_params)
+  end
+
 
   private
+
+  def posting_params
+    params.require(:posting).permit(:content)
+  end
 
   def set_posting
     @posting = Posting.find(params[:id])
