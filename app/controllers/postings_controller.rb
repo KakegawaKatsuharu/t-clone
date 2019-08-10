@@ -11,10 +11,14 @@ class PostingsController < ApplicationController
 
   def create
     @posting = Posting.create(posting_params)
-    if @posting.save
-      redirect_to postings_path, notice: "投稿を作成しました！"
-    else
+    if params[:back]
       render :new
+    else
+      if @posting.save
+        redirect_to postings_path, notice: "投稿を作成しました！"
+      else
+        render :new
+      end
     end
   end
 
