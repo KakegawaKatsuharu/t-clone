@@ -1,4 +1,5 @@
 <%= form_with(model: @posting, local: true, url: choose_new_or_edit) do |form| %>
+  <%# binding.pry %>
   <% if @posting.errors.any? %>
     <div id="error_explanation">
       <h2><%= @posting.errors.count %>件のエラーがあります</h2>

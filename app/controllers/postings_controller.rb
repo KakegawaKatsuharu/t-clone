@@ -1,5 +1,6 @@
 class PostingsController < ApplicationController
   before_action :set_posting, only:[:show, :edit, :update, :destroy]
+  before_action :posting_params, only:[:create, :update, :confirm]
 
   def index
     @postings = Posting.all
@@ -10,7 +11,7 @@ class PostingsController < ApplicationController
   end
 
   def create
-    @posting = Posting.create(posting_params)
+    @posting = Posting.new(posting_params)
     if params[:back]
       render :new
     else
@@ -46,8 +47,8 @@ class PostingsController < ApplicationController
 
   def confirm
     @posting = Posting.new(posting_params)
+    render :new if @posting.invalid?
   end
-
 
   private
 
