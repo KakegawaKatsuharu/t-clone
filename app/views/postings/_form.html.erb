@@ -1,0 +1,19 @@
+<%= form_with(model: @posting, local: true, url: choose_new_or_edit) do |form| %>
+  <%# binding.pry %>
+  <% if @posting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @posting.errors.count %>件のエラーがあります</h2>
+      <ul>
+        <% @posting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="posting_content">
+    <%= form.label :"投稿内容" %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
